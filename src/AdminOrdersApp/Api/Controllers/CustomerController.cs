@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using AdminOrdersApp.Api.Dto;
 using AdminOrdersApp.Api.Helper;
 using AdminOrdersApp.Api.Model;
 using AdminOrdersApp.Api.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace AdminOrdersApp.Api.Controllers
 {

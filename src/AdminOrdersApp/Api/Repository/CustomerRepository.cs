@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AdminOrdersApp.Api.DataSource;
+using AdminOrdersApp.Api.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace AdminOrdersApp.Api.Repository
 {
-    public class CustomerRepository: ICustomerRepository
+    public class CustomerRepository : ICustomerRepository
     {
         private readonly Db _context;
 
@@ -15,9 +17,17 @@ namespace AdminOrdersApp.Api.Repository
             _context = context;
         }
 
-        public IQueryable<Model.Customers> AllCustomers()
+        public IQueryable<Model.Customers> All()
         {
             return _context.Customers;
+        }
+
+        public async Task<Customers> Find(string id)
+        {
+            return await _context.Customers
+                .Include(o => o.Orders)
+                .ThenInclude(d => d.OrderDetails)
+                .FirstOrDefaultAsync(m => m.CustomerId == id);
         }
     }
 }

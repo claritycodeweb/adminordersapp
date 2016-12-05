@@ -1,0 +1,45 @@
+﻿<h1 class="page-header">Dashboard</h1>
+
+<h2 class="sub-header">Custromer list (orders 1 or 0)</h2>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Orders Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cust of customers">
+        <td>{{cust.customerId}}</td>
+        <td>{{cust.companyName}}</td>
+        <td>{{cust.address}}</td>
+        <td>{{cust.city}}</td>
+        <td>{{cust.country}}</td>
+        <td>{{cust.orders.length}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<footer class="navbar ">
+    <div class="text-center">
+        <div ng-hide="(!_pagesCount || _pagesCount < 2)" style="display:inline">
+            <ul class="pagination pagination-sm">
+                <li><a *ngIf="page != 0_" (click)="search(0)"><<</a></li>
+                <li><a *ngIf="_page != 0" (click)="search(_page-1)"><</a></li>
+                <li *ngFor="let n of range()" [ngClass]="{active: n == _page}">
+                    <a (click)="search(n)" *ngIf="n != _page">{{n+1}}</a>
+                    <span *ngIf="n == _page">{{n+1}}</span>
+                </li>
+                <li><a *ngIf="_page != (_pagesCount - 1)" (click)="search(pagePlus(1))">></a></li>
+                <li><a *ngIf="_page != (_pagesCount - 1)" (click)="search(_pagesCount - 1)">>></a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
+

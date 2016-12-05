@@ -7,6 +7,8 @@ namespace AdminOrdersApp.Api.Repository
 {
     public interface ICustomerRepository
     {
-        IQueryable<Model.Customers> AllCustomers();
+        IQueryable<Model.Customers> All();
+
+        Task<Model.Customers> Find(string id);
     }
 }
